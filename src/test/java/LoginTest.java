@@ -33,15 +33,4 @@ public class LoginTest {
        assertEquals(text, "Swag Labs", "Ошибка входа");
        browser.quit();
    }
-
 }
-
-
-
-
-/*    public String getErrorMsg() {
-
-        return "";
-    }*/
-//browser.findElement(By.cssSelector("input[id='user-name']"));
-//browser.findElement(By.id("user-name"));
