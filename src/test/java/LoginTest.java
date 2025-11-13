@@ -21,10 +21,19 @@ public class LoginTest {
         assertEquals(errorText, "Epic sadface: Sorry, this user has been locked out.",
                 "Сообщение об ошибке не верное");
         browser.quit();
-
-
-
     }
+   @Test
+   public void correctLogin() {
+       WebDriver browser = new ChromeDriver();
+       browser.get("https://www.saucedemo.com/");
+       browser.findElement(By.cssSelector("input[id='user-name']")).sendKeys("standard_user");
+       browser.findElement(By.id("password")).sendKeys("secret_sauce");
+       browser.findElement(By.xpath("//input[@type='submit']")).click();
+       String text = browser.findElement(By.xpath("//*[@class='app_logo']")).getText();
+       assertEquals(text, "Swag Labs", "Ошибка входа");
+       browser.quit();
+   }
+
 }
 
 
