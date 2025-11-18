@@ -12,17 +12,21 @@ public class LoginPage {
    public LoginPage(WebDriver browser) {
        this.browser = browser;
    }
+
    public void open() {
    browser.get("https://www.saucedemo.com/");
    }
+
    public void login(String login, String password) {
        fillInLoginField(login);
        fillInPasswordField(password);
        browser.findElement(loginButton).click();
    }
+
    public void fillInLoginField(String login) {
        browser.findElement(loginField).sendKeys(login);
    }
+
    public void fillInPasswordField(String password) {
        browser.findElement(passwordField).sendKeys(password);
     }

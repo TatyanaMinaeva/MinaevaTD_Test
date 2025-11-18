@@ -19,6 +19,7 @@ public class LoginTest extends BaseTest{
         assertEquals(errorText, "Epic sadface: Sorry, this user has been locked out.",
                 "Сообщение об ошибке не верное");
     }
+
    @Test
    public void correctLogin() {
        loginPage.open();
