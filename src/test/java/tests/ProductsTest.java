@@ -21,6 +21,6 @@ public class ProductsTest extends BaseTest{
         loginPage.login("standard_user", "secret_sauce");
         productsPage.products();
         boolean isShoppingCartPresent = productsPage.checkShoppingCart();
-        assertTrue(isShoppingCartPresent,"Иконки корзины не отображена");
+        assertTrue(isShoppingCartPresent,"Иконка корзины не отображена");
     }
 }
