@@ -1,30 +1,36 @@
 package tests;
 
-import org.openqa.selenium.By;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
-    //открыть браузер
-    //вводим название сайта
-
-    @Test
+    @TmsLink("MinaevaTD_Test")
+    @Owner("Tatyana tg@FancySmile")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Проверка текста ошибки входы заблокированного пользователя")
     public void incorrectLogin() {
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");
-        String errorText = browser.findElement(By.cssSelector("*[data-test='error']")).getText();
-        assertEquals(errorText, "Epic sadface: Sorry, this user has been locked out.",
+        assertTrue(loginPage.isErrorMsgAppear(), "Сообщение об ошибке не появляется");
+        assertEquals(loginPage.errorMsgText(), "Epic sadface: Sorry, this user has been locked out.",
                 "Сообщение об ошибке не верное");
     }
 
-   @Test
-   public void correctLogin() {
-       loginPage.open();
-       loginPage.login("standard_user", "secret_sauce");
-       boolean isTitlePresent = browser.findElement(By.cssSelector("[data-test='title']")).isDisplayed();
-       assertTrue(isTitlePresent,"Заголовок страницы не отображен");
-   }
+    @TmsLink("MinaevaTD_Test")
+    @Owner("Tatyana tg@FancySmile")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Проверка корректного логина")
+    public void correctLogin() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        boolean isLogoPresent = productsPage.isPageLoaded();
+        assertTrue(isLogoPresent, "Заголовок страницы не отображен");
+    }
 }

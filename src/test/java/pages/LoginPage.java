@@ -1,33 +1,48 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
-   WebDriver browser;
-   By loginField = By.cssSelector("input[id='user-name']");
-   By passwordField = By.id("password");
-   By loginButton = By.xpath("//input[@type='submit']");
+public class LoginPage extends BasePage {
+    By userField = By.cssSelector("input[id='user-name']");
+    By passwordField = By.id("password");
+    By loginButton = By.xpath("//input[@type='submit']");
+    By error = By.xpath("//*[@data-test='error']");
 
-   public LoginPage(WebDriver browser) {
-       this.browser = browser;
-   }
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
-   public void open() {
-   browser.get("https://www.saucedemo.com/");
-   }
+    @Step("Открываем соответствующее приложение")
+    public void open() {
+        driver.get(BASE_URL);
+    }
 
-   public void login(String login, String password) {
-       fillInLoginField(login);
-       fillInPasswordField(password);
-       browser.findElement(loginButton).click();
-   }
+    @Step("Логинимся под кредами пользователя")
+    public void login(final String userName, final String passwordName) {
+        enterUserName(userName);
+        enterPasswordName(passwordName);
+        driver.findElement(loginButton).click();
+    }
 
-   public void fillInLoginField(String login) {
-       browser.findElement(loginField).sendKeys(login);
-   }
+    @Step
+    public void enterUserName(final String userName) {
+        driver.findElement(userField).sendKeys(userName);
+    }
 
-   public void fillInPasswordField(String password) {
-       browser.findElement(passwordField).sendKeys(password);
+    @Step
+    public void enterPasswordName(final String passwordName) {
+        driver.findElement(passwordField).sendKeys(passwordName);
+    }
+
+    @Step("Проверяем появление сообщения об ошибки")
+    public boolean isErrorMsgAppear() {
+        return driver.findElement(error).isDisplayed();
+    }
+
+    @Step("Проверяем текст ошибки")
+    public String errorMsgText() {
+        return driver.findElement(error).getText();
     }
 }
