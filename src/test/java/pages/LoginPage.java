@@ -26,12 +26,12 @@ public class LoginPage extends BasePage {
         driver.findElement(loginButton).click();
     }
 
-    @Step
+    @Step("Вносим логин")
     public void enterUserName(final String userName) {
         driver.findElement(userField).sendKeys(userName);
     }
 
-    @Step
+    @Step("Вносим пароль")
     public void enterPasswordName(final String passwordName) {
         driver.findElement(passwordField).sendKeys(passwordName);
     }
