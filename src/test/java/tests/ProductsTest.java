@@ -1,26 +1,50 @@
 package tests;
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class ProductsTest extends BaseTest{
+public class ProductsTest extends BaseTest {
 
-    @Test
+    @TmsLink("MinaevaTD_Test")
+    @Owner("Tatyana tg@FancySmile")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Видимость названия страницы")
     public void visibilityLogo() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.products();
-        boolean isLogoPresent = productsPage.checkLogoLabel();
-        assertTrue(isLogoPresent,"Логотип страницы не отображен");
+        boolean isLogoPresent = productsPage.isPageLoaded();
+        assertTrue(isLogoPresent, "Логотип страницы не отображен");
     }
 
-    @Test
+    @TmsLink("MinaevaTD_Test")
+    @Owner("Tatyana tg@FancySmile")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Видимость иконки корзины")
     public void visibilityShoppingCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.products();
-        boolean isShoppingCartPresent = productsPage.checkShoppingCart();
-        assertTrue(isShoppingCartPresent,"Иконка корзины не отображена");
+        boolean isShoppingCartPresent = productsPage.checkCart();
+        assertTrue(isShoppingCartPresent, "Иконка корзины не отображена");
+    }
+
+    @TmsLink("MinaevaTD_Test")
+    @Owner("Tatyana tg@FancySmile")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(description = "Сравнение количества товара с отображением числа на корзине")
+    public void checkGoodsAdded() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.isPageLoaded();
+        productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
+        productsPage.addToCart("Sauce Labs Bolt T-Shirt");
+        assertEquals(productsPage.checkGoodsQuantity(), "2");
     }
 }
