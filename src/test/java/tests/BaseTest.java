@@ -26,7 +26,7 @@ public class BaseTest {
         options.addArguments("start-maximized");   // развернуть окно
         options.addArguments("--guest");
         // options.addArguments("--window-size=1920,1080");
-        // options.addArguments("--headless");    // тесты проходят в фоновом режиме без графического отбражения
+        options.addArguments("--headless");    // тесты проходят в фоновом режиме без графического отбражения
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
