@@ -18,12 +18,6 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    @Step("Находим название страницы")
-    public boolean isPageLoaded(final String pageTitle) {
-        // wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
-        return driver.findElement(By.xpath(TEXT_LOCATOR_PATTERN.formatted(pageTitle))).isDisplayed();
-    }
-
     @Step("Находим иконку корзины")
     public boolean checkCart() {
         return driver.findElement(shoppingCart).isDisplayed();
@@ -43,5 +37,10 @@ public class ProductsPage extends BasePage {
     @Step("Сравнение количества товаров в корзине")
     public String checkGoodsQuantity() {
         return driver.findElement(cartBadge).getText();
+    }
+
+    @Step("Переход на страницу корзины")
+    public void switchToCart() {
+        driver.findElement(cartBadge).click();
     }
 }
