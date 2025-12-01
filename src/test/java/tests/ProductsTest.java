@@ -18,8 +18,7 @@ public class ProductsTest extends BaseTest {
     public void visibilityLogo() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.products();
-        boolean isLogoPresent = productsPage.isPageLoaded();
+        boolean isLogoPresent = productsPage.isPageLoaded("Products");
         assertTrue(isLogoPresent, "Логотип страницы не отображен");
     }
 
@@ -30,7 +29,6 @@ public class ProductsTest extends BaseTest {
     public void visibilityShoppingCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.products();
         boolean isShoppingCartPresent = productsPage.checkCart();
         assertTrue(isShoppingCartPresent, "Иконка корзины не отображена");
     }
@@ -42,9 +40,10 @@ public class ProductsTest extends BaseTest {
     public void checkGoodsAdded() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.isPageLoaded();
+        productsPage.isPageLoaded("Products");
         productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
         productsPage.addToCart("Sauce Labs Bolt T-Shirt");
-        assertEquals(productsPage.checkGoodsQuantity(), "2");
+        productsPage.addToCart(1);
+        assertEquals(productsPage.checkGoodsQuantity(), "3");
     }
 }
