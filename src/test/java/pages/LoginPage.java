@@ -19,6 +19,10 @@ public class LoginPage extends BasePage {
         driver.get(BASE_URL);
     }
 
+    public void open(String url) {
+        driver.get(BASE_URL + url);
+    }
+
     @Step("Логинимся под кредами пользователя")
     public void login(final String userName, final String passwordName) {
         enterUserName(userName);

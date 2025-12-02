@@ -8,6 +8,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 import utils.TestListener;
@@ -19,6 +20,7 @@ public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
+    CartPage cartPage;
 
     @BeforeMethod
     public void setup(ITestContext context) {
@@ -32,6 +34,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
         context.setAttribute("driver", driver);
     }
 
