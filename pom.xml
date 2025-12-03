@@ -16,6 +16,7 @@
         <testng.version>7.10.2</testng.version>
         <allure.version>2.29.1</allure.version>
         <aspectjweaver.version>1.9.22.1</aspectjweaver.version>
+        <webdrivermanager.version>6.3.3</webdrivermanager.version>
     </properties>
 
     <dependencies>
@@ -49,6 +50,12 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
         </dependency>
     </dependencies>
 

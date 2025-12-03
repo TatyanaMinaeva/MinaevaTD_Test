@@ -17,6 +17,7 @@ public class CartPage extends BasePage {
         for (WebElement product : driver.findElements(cartPr)) {
             names.add(product.getText());
         }
+
         return names;
     }
 }
