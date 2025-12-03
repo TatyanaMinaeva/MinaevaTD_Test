@@ -16,6 +16,8 @@ public class ProductsTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(description = "Видимость названия страницы")
     public void visibilityLogo() {
+        System.out.println("ProductsTest visprod is running in thread: " + Thread.currentThread().getId());
+
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         boolean isLogoPresent = productsPage.isPageLoaded("Products");
@@ -27,6 +29,8 @@ public class ProductsTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(description = "Видимость иконки корзины")
     public void visibilityShoppingCart() {
+        System.out.println("ProductsTest viscart is running in thread: " + Thread.currentThread().getId());
+
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         boolean isShoppingCartPresent = productsPage.checkCart();
@@ -38,6 +42,8 @@ public class ProductsTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(description = "Сравнение количества товара с отображением числа на корзине")
     public void checkGoodsAdded() {
+        System.out.println("ProductsTest cart is running in thread: " + Thread.currentThread().getId());
+
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageLoaded("Products");

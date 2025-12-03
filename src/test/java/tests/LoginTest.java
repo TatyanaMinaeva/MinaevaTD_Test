@@ -27,6 +27,8 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(description = "Проверка текста ошибки некорректного входа", dataProvider = "invalidData")
     public void incorrectLogin(String user, String password, String errorMsg) {
+        System.out.println("LoginTest inc is running in thread: " + Thread.currentThread().getId());
+
         loginPage.open();
         loginPage.login(user, password);
         assertTrue(loginPage.isErrorMsgAppear(), "Сообщение об ошибке не появляется");
@@ -38,6 +40,8 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(description = "Проверка корректного логина")
     public void correctLogin() {
+        System.out.println("LoginTest corr is running in thread: " + Thread.currentThread().getId());
+
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         assertTrue(productsPage.isPageLoaded("Products"), "Заголовок страницы не отображен");
