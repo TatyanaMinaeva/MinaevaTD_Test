@@ -1,13 +1,16 @@
 package tests;
 
+import enums.TitleNaming;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
 
@@ -19,8 +22,8 @@ public class ProductsTest extends BaseTest {
         System.out.println("ProductsTest visprod is running in thread: " + Thread.currentThread().getId());
 
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        boolean isLogoPresent = productsPage.isPageLoaded("Products");
+        loginPage.login(withAdminPermission());
+        boolean isLogoPresent = productsPage.isPageLoaded(PRODUCTS.getDisplayName());
         assertTrue(isLogoPresent, "Логотип страницы не отображен");
     }
 
@@ -32,7 +35,7 @@ public class ProductsTest extends BaseTest {
         System.out.println("ProductsTest viscart is running in thread: " + Thread.currentThread().getId());
 
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         boolean isShoppingCartPresent = productsPage.checkCart();
         assertTrue(isShoppingCartPresent, "Иконка корзины не отображена");
     }
@@ -45,8 +48,8 @@ public class ProductsTest extends BaseTest {
         System.out.println("ProductsTest cart is running in thread: " + Thread.currentThread().getId());
 
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.isPageLoaded("Products");
+        loginPage.login(withAdminPermission());
+        productsPage.isPageLoaded(PRODUCTS.getDisplayName());
         productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
         productsPage.addToCart("Sauce Labs Bolt T-Shirt");
         productsPage.addToCart(1);

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class CartPage extends BasePage {
     By cartPr = By.cssSelector(".inventory_item_name");
+
     public CartPage(WebDriver driver) {
         super(driver);
     }

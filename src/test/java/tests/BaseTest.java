@@ -11,6 +11,7 @@ import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.PropertyReader;
 import utils.TestListener;
 
 import java.time.Duration;
@@ -21,6 +22,9 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
+    String user;
+    String locked;
+    String password;
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -31,7 +35,7 @@ public class BaseTest {
             options.addArguments("start-maximized");   // развернуть окно
             options.addArguments("--guest");
             // options.addArguments("--window-size=1920,1080");
-            // options.addArguments("--headless");    // тесты проходят в фоновом режиме без графического отбражения
+            options.addArguments("--headless");    // тесты проходят в фоновом режиме без графического отбражения
 
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
@@ -44,6 +48,10 @@ public class BaseTest {
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
         context.setAttribute("driver", driver);
+
+        user = PropertyReader.getProperty("saucedemo.user");
+        locked = PropertyReader.getProperty("saucedemo.locked_user");
+        password = PropertyReader.getProperty("saucedemo.password");
     }
 
     @AfterMethod
