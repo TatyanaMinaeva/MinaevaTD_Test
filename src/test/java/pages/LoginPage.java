@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import user.User;
 
 public class LoginPage extends BasePage {
     By userField = By.cssSelector("input[id='user-name']");
@@ -23,15 +24,25 @@ public class LoginPage extends BasePage {
         driver.get(BASE_URL + url);
     }
 
-    @Step("Логинимся под кредами пользователя")
-    public void login(final String userName, final String passwordName) {
-        enterUserName(userName);
-        enterPasswordName(passwordName);
+    @Step("Логинимся под кредами пользователя логин = {user.email}, пароль = ******")
+    public void login(User user) {
+        enterUserName(user.getEmail());
+        enterPasswordName(user.getPassword());
+        driver.findElement(loginButton).click();
+    }
+
+    public void login(String user, String pass) {
+        enterLoginName(user);
+        enterPasswordName(pass);
         driver.findElement(loginButton).click();
     }
 
     @Step("Вносим логин")
     public void enterUserName(final String userName) {
+        driver.findElement(userField).sendKeys(userName);
+    }
+
+    public void enterLoginName(final String userName) {
         driver.findElement(userField).sendKeys(userName);
     }
 
