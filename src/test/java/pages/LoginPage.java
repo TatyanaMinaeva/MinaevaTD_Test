@@ -16,39 +16,46 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Открываем соответствующее приложение")
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+        return this;
     }
 
-    public void open(String url) {
+    public LoginPage open(String url) {
         driver.get(BASE_URL + url);
+        return this;
     }
 
     @Step("Логинимся под кредами пользователя логин = {user.email}, пароль = ******")
-    public void login(User user) {
+    public LoginPage login(User user) {
         enterUserName(user.getEmail());
         enterPasswordName(user.getPassword());
         driver.findElement(loginButton).click();
+        return this;
     }
 
-    public void login(String user, String pass) {
+    public LoginPage login(String user, String pass) {
         enterLoginName(user);
         enterPasswordName(pass);
         driver.findElement(loginButton).click();
+        return this;
     }
 
     @Step("Вносим логин")
-    public void enterUserName(final String userName) {
+    public LoginPage enterUserName(final String userName) {
         driver.findElement(userField).sendKeys(userName);
+        return this;
     }
 
-    public void enterLoginName(final String userName) {
+    public LoginPage enterLoginName(final String userName) {
         driver.findElement(userField).sendKeys(userName);
+        return this;
     }
 
     @Step("Вносим пароль")
-    public void enterPasswordName(final String passwordName) {
+    public LoginPage enterPasswordName(final String passwordName) {
         driver.findElement(passwordField).sendKeys(passwordName);
+        return this;
     }
 
     @Step("Проверяем появление сообщения об ошибки")

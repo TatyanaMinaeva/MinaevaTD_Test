@@ -1,6 +1,5 @@
 package tests;
 
-import enums.TitleNaming;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -21,8 +20,9 @@ public class ProductsTest extends BaseTest {
     public void visibilityLogo() {
         System.out.println("ProductsTest visprod is running in thread: " + Thread.currentThread().getId());
 
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         boolean isLogoPresent = productsPage.isPageLoaded(PRODUCTS.getDisplayName());
         assertTrue(isLogoPresent, "Логотип страницы не отображен");
     }
@@ -34,8 +34,9 @@ public class ProductsTest extends BaseTest {
     public void visibilityShoppingCart() {
         System.out.println("ProductsTest viscart is running in thread: " + Thread.currentThread().getId());
 
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         boolean isShoppingCartPresent = productsPage.checkCart();
         assertTrue(isShoppingCartPresent, "Иконка корзины не отображена");
     }
@@ -47,12 +48,14 @@ public class ProductsTest extends BaseTest {
     public void checkGoodsAdded() {
         System.out.println("ProductsTest cart is running in thread: " + Thread.currentThread().getId());
 
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.isPageLoaded(PRODUCTS.getDisplayName());
-        productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
-        productsPage.addToCart("Sauce Labs Bolt T-Shirt");
-        productsPage.addToCart(1);
+        productsPage
+                .addToCart("Test.allTheThings() T-Shirt (Red)")
+                .addToCart("Sauce Labs Bolt T-Shirt")
+                .addToCart(1);
         assertEquals(productsPage.checkGoodsQuantity(), "3");
     }
 }

@@ -37,8 +37,9 @@ public class LoginTest extends BaseTest {
     public void incorrectLogin(User user, String errorMsg) {
         System.out.println("LoginTest inc is running in thread: " + Thread.currentThread().getId());
 
-        loginPage.open();
-        loginPage.login(user);
+        loginPage
+                .open()
+                .login(user);
         assertTrue(loginPage.isErrorMsgAppear(), "Сообщение об ошибке не появляется");
         assertEquals(loginPage.errorMsgText(), errorMsg);
     }
@@ -54,8 +55,9 @@ public class LoginTest extends BaseTest {
     public void correctLogin() {
         System.out.println("LoginTest corr is running in thread: " + Thread.currentThread().getId());
 
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         assertTrue(productsPage.isPageLoaded(PRODUCTS.getDisplayName()), "Заголовок страницы не отображен");
     }
 }
